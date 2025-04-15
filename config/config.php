@@ -4,7 +4,7 @@ class Config {
     public string $db_name = 'tf';
     public string $db_user = 'root';
     public string $db_pass = 'root';
-    public string $db_host = 'localhost';
+    public string $db_host = '127.0.0.1';
     public int $db_port = 3306;
 
     public string $exchangerate_api_key = '169c4a605b782aa395005dc4bbd59046';
@@ -15,4 +15,8 @@ class Config {
 
     public bool $transaction_process_immediate = true;
 
+    public function __construct()
+    {
+        $this->db_host = getenv('DB_HOST');
+    }
 }

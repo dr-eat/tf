@@ -15,7 +15,7 @@ require_once '../controllers/CClient.php';
 require_once '../controllers/CRate.php';
 require_once '../controllers/CTransaction.php';
 
-class BaseTest extends PHPUnit_Framework_TestCase
+class BaseTest extends PHPUnit\Framework\TestCase
 {
     public static ?App $_app = null;
     protected ?App $app = null;

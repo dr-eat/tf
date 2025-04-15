@@ -1,4 +1,3 @@
-SHOW CREATE DATABASE `tf`;
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(255) NOT NULL,

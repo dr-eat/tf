@@ -17,11 +17,12 @@ class MDb {
     public function connect(): void
     {
         mysqli_report(MYSQLI_REPORT_OFF);
-        $this->_link = new mysqli(App::get()->config->db_host, App::get()->config->db_user, App::get()->config->db_pass, App::get()->config->db_name, App::get()->config->db_port);
+        $this->_link = new mysqli(App::get()->config->db_host, App::get()->config->db_user, App::get()->config->db_pass, null, App::get()->config->db_port);
         if ($this->_link->connect_errno) {
             $this->error = $this->_link->connect_errno;
             App::get()->log("Failed to connect to MySQL: " . $this->_link->connect_error, true);
         }
+        $this->_link->query("USE " . App::get()->config->db_name);
         $this->_link->set_charset('utf8');
     }
 
@@ -150,6 +151,15 @@ class MDb {
      */
     public function applyMigration(string $sqls): bool
     {
-        return $this->_link->multi_query($sqls);
+        $res = $this->_link->multi_query($sqls);
+        $this->fetchAll();
+        return $res;
+    }
+
+    public function fetchAll():void {
+        while ($this->_link->next_result())
+        {
+            if (!$this->_link->more_results()) break;
+        }
     }
 }

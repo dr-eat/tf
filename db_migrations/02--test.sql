@@ -1,1 +1,2 @@
-UPDATE `accounts` SET balance=balance+1 WHERE `id`=4;
+INSERT INTO `clients` VALUES (1,'test1','test1','Test1 Test1','test1@dreat.net',1,'active'),(2,'test2','test2','Test2 Test2','test2@dreat.net',1,'active'),(3,'test3','test3','Test3 Test3','test3@dreat.net',1,'new');
+INSERT INTO `accounts` VALUES (1,1,'test11',6.08,'EUR',1),(2,1,'test12',13.00,'USD',1),(3,2,'test21',4.00,'EUR',1),(4,2,'test22',2.00,'GBP',1),(5,1,'test13',9.49,'PLN',1),(6,1,'test14',11.30,'RUB',1);
