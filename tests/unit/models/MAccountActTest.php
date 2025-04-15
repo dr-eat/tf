@@ -17,6 +17,7 @@ class MAccountActTest extends BaseTest
 {
     public function testListByClientId()
     {
+	    $this->app->db->query('delete from accounts', []);
         $maccount = new MAccount();
         $maccount->name = 'test ut1';
         $maccount->client_id = 1;
