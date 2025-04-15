@@ -8,7 +8,18 @@ $envs = [App::ENV_DEV, App::ENV_TEST];
 foreach ($envs as $env) {
     App::$env = $env;
     $db = App::get(true)->db;
+
     $last_id = $db->getOne('SELECT MAX(id) FROM migrations') ?: 0;
+    if (!$last_id) {
+        $db->query('CREATE DATABASE IF NOT EXISTS ' . App::get()->config->db_name);
+    }
+    $row = $db->getRow("SHOW TABLES LIKE 'clients'", []);
+    if (empty($row)) {
+        $sqls = file_get_contents('../db_migrations/01--create.sql');
+        $db->applyMigration($sqls);
+        $last_id = 1;
+    }
+
     /*
      // can be implemeted this way:
     do {
@@ -40,4 +51,3 @@ foreach ($envs as $env) {
         $imported = true;
     }
 }
-

@@ -1,4 +1,5 @@
 <?php
+require_once '../models/MDb.php';
 class TestMDb extends MDb {
     public function beginTransaction(): bool
     {
