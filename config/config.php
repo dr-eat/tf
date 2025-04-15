@@ -3,7 +3,7 @@ class Config {
     public string $admin_mail = 'dreat@dreat.net';
     public string $db_name = 'tf';
     public string $db_user = 'root';
-    public string $db_pass = '';
+    public string $db_pass = 'root';
     public string $db_host = 'localhost';
     public int $db_port = 3306;
 
